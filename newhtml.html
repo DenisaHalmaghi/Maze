@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <body onload="doFocus('COD1')">
+        <p>Scaneaza 2 coduri:</p>
+
+        <input id="COD1">
+        <input id="COD2">
+
+        <button type="button" onclick="myFunction()">Gata</button>
+
+        <p id="demo"></p>
+
+        <ol id="istoric">
+        </ol>
+        <script>
+            function doFocus(cod) {
+                document.getElementById(cod).focus();
+            }
+            function myFunction() {
+                var t1, t2, x, y;
+                t1 = document.getElementById("COD1").value;
+                t2 = document.getElementById("COD2").value;
+                if (t1.length === 11) {
+                    x = t1.substring(1, 11);
+                    y = t2.substring(0, 10);
+                } else if (t1.length === 23) {
+                    x = t1.substring(0, 10);
+                    y = t2.substring(1, 11);
+                } else {
+                    x = "Eroare:";
+                    y = "abc";
+                }
+
+                if (x == y) {
+                    text = "OK";
+                } else {
+                    text = "cod1 <> cod2 !!!";
+                }
+                document.getElementById("demo").innerHTML = text;
+                
+                var newItem = document.createElement("LI");
+                var textnode = document.createTextNode("COD:" + x + " " + text);
+                newItem.appendChild(textnode);
+                var list = document.getElementById("istoric");
+                //list.insertBefore(newItem, list.childNodes[0]);
+                list.insertBefore(newIte, list.firstChild);
+                document.getElementById("COD1").value = "";
+                document.getElementById("COD2").value = "";
+                doFocus("COD1");
+            }
+        </script>
+
+    </body>
+</html> 
