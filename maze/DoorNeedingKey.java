@@ -59,6 +59,7 @@ public class DoorNeedingKey extends Door implements IHealthManager{
         System.out.println("is open:"+open+" "+this);
              if(!isUnlocked()){
                 //try to unlock it
+                System.out.println("locked");
                 unlock();
                
             }  

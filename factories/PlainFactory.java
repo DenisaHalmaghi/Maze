@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Factories;
+package factories;
 
 import java.util.Random;
 import maze.Door;
 import maze.MapSite;
 import maze.Room;
-import maze.RoomCovid;
+
 
 /**
  *

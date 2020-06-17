@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Factories;
+package factories;
 
 import gameClasses.Item;
 import gameClasses.Key;
@@ -14,60 +14,53 @@ import maze.DoorNeedingKey;
 import maze.GasRoom;
 import maze.MapSite;
 import maze.Room;
-import maze.RoomCovid;
+
 import maze.RoomWithItemInside;
 
 /**
  *
  * @author DENISA
  */
-public class LockedDoorFactory extends PlainFactory{
+public class AllThingsRandomFactory implements AbstractFactory{
      Random rand ;
-     int keys=0;
-     public LockedDoorFactory(){
+     public AllThingsRandomFactory(){
          super();
          //pentru creearea random a camerelor
          rand=new Random();
      }
      @Override
      public  Door makeDoor(Room r1, Room r2){
-         //sanse de 40% sa creeam o camera de tip covid
-         System.out.println(keys);
-         if( rand.nextInt(100)<50){
-             //doar daca avem chei existenta instantiem camera care necesita cheie
-            // if(keys>0){
-                 keys--;
-                 System.out.println("usa cu cheie");
-                 return new DoorNeedingKey(r1,r2);
-                 
-            // }
-             
-         }
-             //camera simpla
-             return new Door(r1,r2);
-         
-     }
+        if( rand.nextInt(100)<50){
+
+                System.out.println("usa cu cheie");
+                return new DoorNeedingKey(r1,r2);
+        }
+            //usa simpla
+            return new Door(r1,r2);
+    }
      
         public  Room makeRoom(int num){
              Random rand=new Random();
+             int number=rand.nextInt(100);
              Item item;
-         //sanse de 40% sa creeam o camera cu item
-         if( rand.nextInt(100)<60){
-             //camera cu item in ea
-            if( rand.nextInt(100)<0){
-                 System.out.println("avem o cheie");
-                keys++;
+         //sanse de 33% sa creeam un anumit tip de camera
+         if( number<33){
+            
+            if( rand.nextInt(100)<50){
                 item=new Key();
             }
             else{
-                //camera simpla
+                
                 item=new Potion();
             }
              return new RoomWithItemInside(num,item);
          }
-         else{
-             //camera simpla
+         else if(number>66){
+             //camera cu gaz
              return new GasRoom(num);
+         }
+         else{
+             return new Room(num);
          }
      }
      

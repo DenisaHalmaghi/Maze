@@ -5,7 +5,7 @@
  */
 package mazeCreator;
 
-import Factories.AbstractFactory;
+import factories.AbstractFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import maze.Door;
 import maze.Maze;
 import maze.Room;
 import maze.Wall;
-import runApp.SimpleMazeGame;
+import runApp.EntryPoint;
 
 /**
  *
@@ -167,7 +167,7 @@ public class MazeCreator{
              sc=new Scanner(new File(path));
         } catch (FileNotFoundException ex) {
              System.out.println("bubaaa");
-            Logger.getLogger(SimpleMazeGame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EntryPoint.class.getName()).log(Level.SEVERE, null, ex);
         }
         LinkedList<Room> rooms=new LinkedList<>();
         LinkedList<String> neighbours=new LinkedList<>();

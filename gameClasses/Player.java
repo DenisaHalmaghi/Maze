@@ -18,36 +18,34 @@ public class Player implements IHealthManager {
     private int maxHealth,currentHealth;
     private Weapon weapon=new Weapon(20);
     private static Player player;
-   // LinkedList<Item> inventory =new LinkedList<>();
     HashMap<ItemType,LinkedList<Item>> inventory=new HashMap<>();  
     public Player(){
-      // player=new Player();
+     
     }
     
     public void initializeHealth(int hp){
-        player.currentHealth=player.currentHealth=hp;
+        player.currentHealth=player.maxHealth=hp;
     }
       
     public void lootItem(Item item){
         
-        //inventory.put(item.getType(), item);
+       
        LinkedList<Item> list=inventory.get(item.getType());
-       //not type but name -> golden key, silver jey  
+       
        if(list==null){
           list=new LinkedList<>();
           inventory.put(item.getType(), list);
        }
        list.add(item);
-      //  System.out.println(item.getType());
+      
     }
     
     public int getHealth(){
         return currentHealth;
     }
     public void useItem(Item item){
-        //delete from inventory
         item.use();
-        //get type and erase one from type
+        //get BY type and erase one from type
         ItemType type=item.getType();
         System.out.println(type);
         inventory.get(type).removeLast();
@@ -55,13 +53,17 @@ public class Player implements IHealthManager {
     }
     
     public void modifyHealth(int dh){
-       // System.out.println(dh);
+      
         currentHealth+=dh;
         if(currentHealth<=0){
           System.err.println("Ai pierdut!");
           System.exit(0);
         }
-        System.err.println("Current health:"+currentHealth);
+        if(currentHealth>maxHealth){
+            currentHealth=maxHealth;
+            
+        }
+        System.err.println("Current player health:"+currentHealth+"/"+maxHealth);
         
     }
     
@@ -74,7 +76,7 @@ public class Player implements IHealthManager {
 
     public void getInvetory() {
         //de sters!!!!!!!!!!!
-         System.out.println("HEALTH:"+currentHealth);
+         System.out.println("INVENTORY:");
         try{
              System.out.println("keys in inventory:"+inventory.get(ItemType.Key).size());
             
@@ -105,11 +107,7 @@ public class Player implements IHealthManager {
         }
         return item;
     }
-    
-    public Item getKey() {
-        return new Key();
-    }
-
+   
     public int getDamage() {
         return weapon.getDamage();
     }

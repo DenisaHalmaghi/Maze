@@ -13,7 +13,7 @@ import java.awt.Color;
  */
 public abstract class Item {
    
-    public abstract void use();//???
+    public abstract void use();
     public abstract Color getColor();
 
     public abstract ItemType getType();

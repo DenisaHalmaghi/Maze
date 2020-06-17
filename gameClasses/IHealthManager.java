@@ -11,7 +11,6 @@ package gameClasses;
  */
 public interface IHealthManager {
 
-   
     public void modifyHealth(int dh);
     public int getHealth();
 }
